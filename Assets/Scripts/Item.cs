@@ -85,11 +85,12 @@ public class Item : MonoBehaviour
             {
                 if (mnozh == Model.Instance.data.Length-1) return;
                 Destroy(it.gameObject);
-                mnozh = Model.Instance.data[mnozh+1].mnozh;
+                mnozh += 1;
                 _spriteRenderer.sprite = Model.Instance.data[mnozh].sprite;
                 _particleSystem.textureSheetAnimation.SetSprite(0, _spriteRenderer.sprite);
                 _particleSystem.Play();
                 Player.Instance.data.onField[mnozh - 1] -= 2;
+                Player.Instance.data.onField[mnozh] += 1;
                 return;
             }
         }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class UIController : MonoBehaviour
 {
+    public static System.Action ItemBought;
     [SerializeField] private TMP_Text _money, _moneyPerSec;
     [SerializeField] private GameObject[] _menu;
     private void OnEnable()
@@ -30,6 +31,7 @@ public class UIController : MonoBehaviour
             Player.Instance.data.onField[index] += 1;
             GameObject go = Instantiate(Model.Instance.items[index]);
             go.transform.position = new Vector3(Random.Range(-3f, 3f), Random.Range(-2f, 2f), 0);
+            ItemBought?.Invoke();
             Player.Instance.Save();
         }
     }
@@ -44,6 +46,7 @@ public class UIController : MonoBehaviour
     private void UpdateMoney()
     {
         _money.text = Player.Instance.data.money.ToString();
+
     }
     private IEnumerator UpdatePerSecUI()
     {

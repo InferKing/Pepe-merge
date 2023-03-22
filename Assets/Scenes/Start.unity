@@ -168,8 +168,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    money: 5000
+    money: 0
     perClick: 1
+    maxMoney: 0
+    extraMoney: 1
+    sale: 0
     indexes: 
 --- !u!1 &388358534
 GameObject:

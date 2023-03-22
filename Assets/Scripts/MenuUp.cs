@@ -9,13 +9,22 @@ public class MenuUp : MonoBehaviour
     [SerializeField] private TMP_Text _text;
     [SerializeField] private int _index, _mnozh;
 
+    private void OnEnable()
+    {
+        UIController.ItemBought += SetText;
+    }
+    private void OnDisable()
+    {
+        UIController.ItemBought -= SetText;
+    }
+
     private void Start()
     {
-        SetText();
         for (int i = 0; i < Player.Instance.data.upgradeMenu[_index]; i++)
         {
             _price = Mathf.RoundToInt(_price * _mnozh);
         }
+        SetText();
     }
     public void SetText()
     {
@@ -27,7 +36,7 @@ public class MenuUp : MonoBehaviour
         {
             Player.Instance.data.money -= _price;
             _price = Mathf.RoundToInt(_price * _mnozh);
-            Player.Instance.data.upgradeMenu[0] += 1;
+            Player.Instance.data.upgradeMenu[_index] += 1;
             switch (_index)
             {
                 case 0:
@@ -41,6 +50,8 @@ public class MenuUp : MonoBehaviour
                     break;
             }
             Player.Instance.Save();
+            UIController.ItemBought?.Invoke();
+            PlayerController.PressedPepe?.Invoke();
         }
     }
 }

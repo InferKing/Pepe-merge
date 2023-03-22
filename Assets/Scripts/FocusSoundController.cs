@@ -21,9 +21,11 @@ public class FocusSoundController : MonoBehaviour
     public void OffMusic()
     {
         AudioListener.volume = 0;
+        Time.timeScale = 0;
     }
     public void OnMusic()
     {
         AudioListener.volume = 1;
+        Time.timeScale = 1;
     }
 }

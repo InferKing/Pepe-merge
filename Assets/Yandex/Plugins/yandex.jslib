@@ -20,6 +20,18 @@ mergeInto(LibraryManager.library, {
       }
     })
   },
+    ShowAdvFull : function(value){
+    ysdk.adv.showFullscreenAdv({
+    callbacks: {
+        onClose: function(wasShown) {
+          // some action after close
+        },
+        onError: function(error) {
+          // some action on error
+        }
+    }
+    })
+  },
 
   SaveExtern: function(date) {
     var dateString = UTF8ToString(date);
@@ -30,7 +42,15 @@ mergeInto(LibraryManager.library, {
   LoadExtern: function() {
     player.getData().then(_date => {
       const myJSON = JSON.stringify(_date);
+      console.log(myJSON);
       myGameInstance.SendMessage('Player', 'SetData', myJSON);
+    });
+  },
+
+  SetCurScore: function(value) {
+    ysdk.getLeaderboards()
+    .then(lb => {
+      lb.setLeaderboardScore('Score', value);
     });
   },
 

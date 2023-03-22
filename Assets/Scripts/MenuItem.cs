@@ -8,10 +8,21 @@ public class MenuItem : MonoBehaviour
     [SerializeField] private TMP_Text _namePepe, _price;
     [SerializeField] private Image _image;
     [SerializeField] private int _index;
+    private void OnEnable()
+    {
+        UIController.ItemBought += UpdateInfo;
+    }
+    private void OnDisable()
+    {
+        UIController.ItemBought -= UpdateInfo;
+    }
     private void Start()
     {
         UpdateInfo();
-
+    }
+    private void Update()
+    {
+        _price.text = "Цена: " + Mathf.RoundToInt(Model.Instance.data[_index].price * (1 - Player.Instance.data.sale) * Player.Instance.GetPrice(_index)).ToString();
     }
     public void UpdateInfo()
     {
