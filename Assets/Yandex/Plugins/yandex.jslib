@@ -20,7 +20,7 @@ mergeInto(LibraryManager.library, {
       }
     })
   },
-    ShowAdvFull : function(value){
+    ShowAdvFull : function(){
     ysdk.adv.showFullscreenAdv({
     callbacks: {
         onClose: function(wasShown) {

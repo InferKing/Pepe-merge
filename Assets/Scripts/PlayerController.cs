@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     public static System.Action PressedPepe2;
     private GameObject selectedObject;
     private Vector3 offset;
+    private void OnApplicationQuit()
+    {
+        Player.Instance.Save();
+    }
     private void Start()
     {
         for (int i = 0; i < Model.Instance.items.Length; i++)

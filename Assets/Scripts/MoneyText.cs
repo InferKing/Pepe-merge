@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 public class MoneyText : MonoBehaviour
 {
+    [SerializeField] private UnityEngine.UI.Button _button;
     [SerializeField] private TMP_Text m_Text;
     [HideInInspector] public bool isEnabled = false;
     public void ShowAnim(string text)
@@ -16,7 +17,7 @@ public class MoneyText : MonoBehaviour
     private IEnumerator Anim()
     {
         float time = 0f;
-        m_Text.transform.position = new Vector3(7, -1f, 0);
+        m_Text.transform.position = new Vector3(_button.transform.position.x, -1f, 0);
         while (time < 1)
         {
             m_Text.transform.position = new Vector3(m_Text.transform.position.x, m_Text.transform.position.y + Time.deltaTime, 0);

@@ -17,20 +17,12 @@ public class Yandex : MonoBehaviour
     }
     public void ShowFullAd()
     {
-        if (!_isWaiting)
-        {
-            ShowAdvFull();
-            _isWaiting = true;
-        }
-        else
-        {
-            if (!_isDelay) StartCoroutine(DelayAd());
-        }
+        ShowAdvFull();
     }
     private IEnumerator DelayAd()
     {
         _isDelay = true;
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(15f);
         _isWaiting = false;
         _isDelay = false;
     }
